@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import logo from './logo.png';
+import AboutPage from './AboutPage';
 import './App.css'; 
 
 const Sidebar = ({ activeMenuItem, onMenuItemClick }) => {
-  const menuItems = ['Dashboard', 'Products', 'Purchases', 'Settings', 'About', 'Contact', 'Help'];
+  const menuItems = ['Dashboard', 'Products', 'Purchases', 'About', 'Contact', 'LogOut'];
   const [isOpen, setIsOpen] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
 
@@ -24,6 +25,15 @@ const Sidebar = ({ activeMenuItem, onMenuItemClick }) => {
     console.log('Clicked menu item:', item);
     onMenuItemClick(item.toLowerCase());
     setIsOpen(false);
+  };
+
+  const renderPage = () => {
+    switch (activeMenuItem) {
+      case 'about':
+        return <AboutPage />;
+      default:
+        return null;
+    }
   };
 
   return (

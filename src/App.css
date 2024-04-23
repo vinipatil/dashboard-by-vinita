@@ -15,7 +15,7 @@ body {
   left: 0;
   height: 100%;
   width: 250px;
-  background-color: rgb(67, 70, 68);
+  background-color: rgb(5, 20, 86);
   color: #fff;
   padding-top: 20px;
   transition: width 0.3s ease;
@@ -35,21 +35,26 @@ body {
 
 .sidebar ul {
   list-style-type: none;
-  margin-left: 20px;
+  margin-left: 10px;
 }
 
 .sidebar ul li {
   padding: 10px 0;
   cursor: pointer;
   margin-top: 20px;
+  margin-left: 20px;
 }
 
 .sidebar ul li:hover {
-  background-color: #555;
+  color: yellow;
+  width: 100%;
+  font-size: 20px;
+  margin-left: 20px;
 }
 
 .sidebar ul li.active {
-  background-color: #555;
+  color: yellow;
+  font-size: 20px;
 }
 
 .main-content {
@@ -67,17 +72,34 @@ body {
 
 .block1 {
   width: 40%;
-  background-color: rgb(252, 100, 100);
+  background: linear-gradient(to right, rgb(156, 75, 231), rgb(238, 61, 61));
   padding: 20px;
   border-radius: 5px;
 }
 
 .block2 {
   width: 40%;
-  background-color: rgb(231, 107, 219);
+  background: linear-gradient(to right, rgb(90, 95, 235), rgb(240, 40, 160));
   padding: 20px;
   border-radius: 5px;
 }
+
+.dashboard-blocks {
+  display: flex;
+  justify-content: space-between;
+}
+
+.block1,
+.block2 {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  margin-left: 40%;
+  font-size: 40px;
+}
+
 
 .block h2 {
   margin-bottom: 10px;
@@ -191,7 +213,7 @@ body {
     transition: transform 0.3s ease-in-out;
   }
 
-  .hamburger-icon{
+  .hamburger-icon {
     width: 20px;
     height: 20px;
     background-color: rgba(86, 82, 82, 0);
@@ -244,8 +266,8 @@ tr:hover {
 
 
 #productBChartContainer {
-  max-width: 900px; 
-  height: 700px; 
+  max-width: 900px;
+  height: 700px;
   margin: 0 auto;
 }
 
@@ -253,12 +275,55 @@ tr:hover {
   position: fixed;
   right: 0;
   bottom: 0;
-  min-width: 100%; 
+  min-width: 100%;
   min-height: 100%;
-  z-index: -1; 
+  z-index: -1;
 }
 
 .content {
-  position: relative; 
+  position: relative;
   z-index: 1;
+}
+
+
+.about-page {
+  width: 100%;
+  margin-top: 10%;
+  padding: 50px;
+  background: linear-gradient(to right, rgb(229, 98, 120), blue);
+  border: 1px solid #ddd;
+}
+
+.about-page h2 {
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.about-page p {
+  text-align: center;
+  font-size: 23px;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.contact-page {
+  width: 100%;
+  margin-top: 10%;
+  padding: 50px;
+  background: linear-gradient(to right, rgb(229, 98, 120), blue);
+  border: 1px solid #ddd;
+}
+
+.contact-page h2 {
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.contact-page p {
+  text-align: center;
+  font-size: 23px;
+  line-height: 1.5;
+  margin-bottom: 15px;
 }

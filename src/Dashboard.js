@@ -1,8 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCubes, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import Sidebar from './Sidebar';
 import ProductList from './ProductList';
 import Purchases from './Purchases';
+import AboutPage from './AboutPage';
+import ContactPage from './ContactPage';
 import './App.css';
 
 const Dashboard = () => {
@@ -10,7 +14,9 @@ const Dashboard = () => {
   const [totalProducts, setTotalProducts] = useState(0);
   const [totalPurchases, setTotalPurchases] = useState(0);
   const [purchaseData, setPurchaseData] = useState({});
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [showAboutPage, setShowAboutPage] = useState(false);
+  const [showContactPage, setShowContactPage] = useState(false);
   const chartRef = useRef(null);
   const productBChartRef = useRef(null);
 
@@ -91,7 +97,7 @@ const Dashboard = () => {
       datasets: [
         {
           label: 'Sales of products',
-          data: [5000, 6000, 5500, 7000, 6500, 7500, 6000, 8000, 7000, 8500, 9000, 9500], 
+          data: [5000, 6000, 5500, 7000, 6500, 7500, 6000, 8000, 7000, 8500, 9000, 9500],
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(54, 162, 235, 0.2)',
@@ -140,13 +146,17 @@ const Dashboard = () => {
 
   const handleMenuItemClick = (item) => {
     setActiveMenuItem(item === 'Dashboard' ? 'dashboard' : item);
-    // Close sidebar when menu item is clicked
     setIsSidebarOpen(false);
+
+    setShowAboutPage(item.toLowerCase() === 'about');
+    setShowContactPage(item.toLowerCase() === 'contact');
   };
 
+
   const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen); // Toggle sidebar state
+    setIsSidebarOpen(!isSidebarOpen);
   };
+
 
   return (
     <div className="dashboard">
@@ -154,18 +164,20 @@ const Dashboard = () => {
         <Sidebar activeMenuItem={activeMenuItem} onMenuItemClick={handleMenuItemClick} />
       </div>
       <div className={`main-content ${activeMenuItem !== 'dashboard' ? 'full-width' : ''}`}>
-      <div className="menu-toggle" onClick={toggleSidebar}>
+        <div className="menu-toggle" onClick={toggleSidebar}>
           <div className={`hamburger-icon ${isSidebarOpen ? 'open' : ''}`} />
         </div>
+        {showAboutPage && <AboutPage />}
+        {showContactPage && <ContactPage />}
         {activeMenuItem === 'dashboard' && (
           <div className="dashboard-blocks">
             <div className="block1">
-              <h2>Total Products</h2>
-              <p>{totalProducts}</p>
+              <h2>Total Products <br></br><br></br>{totalProducts}</h2>
+              <FontAwesomeIcon icon={faCubes} className="icon" />
             </div>
             <div className="block2">
-              <h2>Total Purchases</h2>
-              <p>{totalPurchases}</p>
+              <h2>Total Purchases <br></br><br></br>{totalPurchases}</h2>
+              <FontAwesomeIcon icon={faShoppingCart} className="icon" />
             </div>
           </div>
         )}
@@ -176,11 +188,11 @@ const Dashboard = () => {
           </div>
         )}
         {activeMenuItem === 'dashboard' && (
-  <div className="chart-container" id="productBChartContainer">
-    <h2>Sales/Profit</h2>
-    <canvas ref={productBChartRef} />
-  </div>
-)}
+          <div className="chart-container" id="productBChartContainer">
+            <h2>Sales/Profit</h2>
+            <canvas ref={productBChartRef} />
+          </div>
+        )}
 
         {activeMenuItem === 'products' && (
           <ProductList products={dummyProducts} />
